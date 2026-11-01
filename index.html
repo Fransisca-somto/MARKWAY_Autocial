@@ -23,36 +23,45 @@
     <div class="preloader__bar"><span></span></div>
   </div>
 
-  <!-- ============ TOP BAR ============ -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <div class="topbar__info">
-        <a href="https://maps.google.com/?q=17+Commercial+Road+Apapa+Lagos" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> 17 Commercial Road, Apapa, Lagos</a>
-        <a href="mailto:info@markway.com"><i class="fa-solid fa-envelope"></i> info@markway.com</a>
-        <a href="tel:+2348075769997"><i class="fa-solid fa-phone"></i> 0807 576 9997</a>
-      </div>
-      <div class="topbar__social">
-        <a href="https://wa.me/2348075769997" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://instagram.com/nso.markway" target="_blank" rel="noopener" aria-label="Instagram @nso.markway"><i class="fa-brands fa-instagram"></i></a>
-        <a href="mailto:info@markway.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ HEADER ============ -->
-  <header class="header" id="header">
-    <div class="container header__inner">
+  <!-- ============ MASTHEAD (logo + contact blocks) ============ -->
+  <div class="masthead">
+    <div class="container masthead__inner">
       <a href="#home" class="logo" aria-label="Markway home">
         <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2 44 10v14c0 12-10 20-20 22C14 44 4 36 4 24V10z" fill="#7b1113"/><path d="M13 33V16l11 11 11-11v17" fill="none" stroke="#c9a227" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>
         <span class="logo__text">MARK<b>WAY</b><small>Clearing &amp; Forwarding</small></span>
       </a>
 
+      <div class="masthead__info">
+        <a href="tel:+2348075769997" class="info-block">
+          <span class="info-block__icon"><i class="fa-solid fa-phone-volume"></i></span>
+          <span><small>Call / WhatsApp</small><strong>0807 576 9997</strong></span>
+        </a>
+        <a href="mailto:info@markway.com" class="info-block">
+          <span class="info-block__icon"><i class="fa-regular fa-envelope"></i></span>
+          <span><small>Email Us</small><strong>info@markway.com</strong></span>
+        </a>
+        <a href="https://maps.google.com/?q=17+Commercial+Road+Apapa+Lagos" target="_blank" rel="noopener" class="info-block">
+          <span class="info-block__icon"><i class="fa-solid fa-location-dot"></i></span>
+          <span><small>Head Office</small><strong>17 Commercial Rd, Apapa</strong></span>
+        </a>
+      </div>
+
+      <a href="tel:+2348075769997" class="masthead__call" aria-label="Call Markway"><i class="fa-solid fa-phone-volume"></i></a>
+    </div>
+  </div>
+
+  <!-- ============ NAV BAR ============ -->
+  <header class="navbar" id="header">
+    <div class="container navbar__inner">
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span><em>Menu</em></button>
+
       <nav class="nav" id="nav">
+        <button class="nav__close" id="navClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i> Close</button>
         <ul class="nav__list">
           <li><a href="#home" class="nav__link active">Home</a></li>
           <li><a href="#about" class="nav__link">About Us</a></li>
           <li class="has-dropdown">
-            <a href="#services" class="nav__link">Services <i class="fa-solid fa-chevron-down"></i></a>
+            <a href="#services" class="nav__link">Services <i class="fa-solid fa-angle-down"></i></a>
             <ul class="dropdown">
               <li><a href="#services" data-service="0">Import &amp; Export</a></li>
               <li><a href="#services" data-service="1">Customs Clearance</a></li>
@@ -61,17 +70,13 @@
               <li><a href="#services" data-service="4">Documentation &amp; Compliance</a></li>
             </ul>
           </li>
-          <li><a href="#why-us" class="nav__link">Why Choose Us</a></li>
+          <li><a href="#why-us" class="nav__link">Why Us</a></li>
           <li><a href="#faq" class="nav__link">FAQ</a></li>
           <li><a href="#contact" class="nav__link">Contact</a></li>
         </ul>
       </nav>
 
-      <div class="header__actions">
-        <a href="https://wa.me/2348075769997" target="_blank" rel="noopener" class="icon-btn" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#quote" class="btn btn--primary btn--sm">Get a Quote</a>
-        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-      </div>
+      <a href="#quote" class="navbar__quote">Get a Quote <i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </header>
 
