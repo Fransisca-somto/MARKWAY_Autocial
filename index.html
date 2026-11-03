@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Markway | Clearing &amp; Forwarding, Import &amp; Export Logistics – Apapa, Lagos</title>
+  <title>Markway | Clearing &amp; Forwarding, Import &amp; Export Logistics in Apapa, Lagos</title>
   <meta name="description" content="Markway (Mark P N O Unique Way Enterprises) provides clearing and forwarding, customs clearance, Form M, PAAR, SONCAP and NAFDAC documentation, sea and air freight, and haulage services from Apapa, Lagos.">
   <meta name="theme-color" content="#2b3118">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 2 44 10v14c0 12-10 20-20 22C14 44 4 36 4 24V10z' fill='%237b1113'/%3E%3Cpath d='M13 33V16l11 11 11-11v17' fill='none' stroke='%23c9a227' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -23,36 +24,21 @@
     <div class="preloader__bar"><span></span></div>
   </div>
 
-  <!-- ============ TOP BAR ============ -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <div class="topbar__info">
-        <a href="https://maps.google.com/?q=17+Commercial+Road+Apapa+Lagos" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> 17 Commercial Road, Apapa, Lagos</a>
-        <a href="mailto:info@markway.com"><i class="fa-solid fa-envelope"></i> info@markway.com</a>
-        <a href="tel:+2348075769997"><i class="fa-solid fa-phone"></i> 0807 576 9997</a>
-      </div>
-      <div class="topbar__social">
-        <a href="https://wa.me/2348075769997" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://instagram.com/nso.markway" target="_blank" rel="noopener" aria-label="Instagram @nso.markway"><i class="fa-brands fa-instagram"></i></a>
-        <a href="mailto:info@markway.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-      </div>
-    </div>
-  </div>
-
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <a href="#home" class="logo" aria-label="Markway home">
+      <a href="#home" class="logo logo--light" aria-label="Markway home">
         <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2 44 10v14c0 12-10 20-20 22C14 44 4 36 4 24V10z" fill="#7b1113"/><path d="M13 33V16l11 11 11-11v17" fill="none" stroke="#c9a227" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>
         <span class="logo__text">MARK<b>WAY</b><small>Clearing &amp; Forwarding</small></span>
       </a>
 
       <nav class="nav" id="nav">
+        <button class="nav__close" id="navClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i> Close</button>
         <ul class="nav__list">
           <li><a href="#home" class="nav__link active">Home</a></li>
           <li><a href="#about" class="nav__link">About Us</a></li>
           <li class="has-dropdown">
-            <a href="#services" class="nav__link">Services <i class="fa-solid fa-chevron-down"></i></a>
+            <a href="#services" class="nav__link">Services <i class="fa-solid fa-angle-down"></i></a>
             <ul class="dropdown">
               <li><a href="#services" data-service="0">Import &amp; Export</a></li>
               <li><a href="#services" data-service="1">Customs Clearance</a></li>
@@ -61,17 +47,14 @@
               <li><a href="#services" data-service="4">Documentation &amp; Compliance</a></li>
             </ul>
           </li>
-          <li><a href="#why-us" class="nav__link">Why Choose Us</a></li>
+          <li><a href="#why-us" class="nav__link">Why Us</a></li>
           <li><a href="#faq" class="nav__link">FAQ</a></li>
           <li><a href="#contact" class="nav__link">Contact</a></li>
         </ul>
       </nav>
 
-      <div class="header__actions">
-        <a href="https://wa.me/2348075769997" target="_blank" rel="noopener" class="icon-btn" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#quote" class="btn btn--primary btn--sm">Get a Quote</a>
-        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-      </div>
+      <a href="#quote" class="header__quote">Get a Quote <i class="fa-solid fa-arrow-right"></i></a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
@@ -136,19 +119,19 @@
         <h2 class="title" data-reveal="up" data-delay="100">Your One-Stop Partner for Clearing, Forwarding &amp; Logistics</h2>
         <div class="about__features" data-reveal="up" data-delay="200">
           <div class="about__feature">
-            <span class="about__feature-icon"><i class="fa-solid fa-ship"></i></span>
+            <i class="ph-light ph-boat" aria-hidden="true"></i>
             <h4>Sea, Air &amp; Land Cargo</h4>
           </div>
           <div class="about__feature">
-            <span class="about__feature-icon"><i class="fa-solid fa-file-shield"></i></span>
+            <i class="ph-light ph-seal-check" aria-hidden="true"></i>
             <h4>Regulatory Documentation &amp; Compliance</h4>
           </div>
         </div>
         <p class="text" data-reveal="up" data-delay="250">Mark P N O Unique Way Enterprises (Markway) provides comprehensive clearing, forwarding, import and export logistics services. We assist importers, exporters, manufacturers, traders and businesses with the documentation, regulatory processes, customs clearance and transportation required to move their goods efficiently from origin to final destination.</p>
         <ul class="checklist" data-reveal="up" data-delay="300">
-          <li><i class="fa-solid fa-circle-check"></i> Form M, PAAR, SONCAP and NAFDAC processing.</li>
-          <li><i class="fa-solid fa-circle-check"></i> Port and airport customs clearance and cargo release.</li>
-          <li><i class="fa-solid fa-circle-check"></i> Haulage, container handling and final delivery.</li>
+          <li><i class="ph-light ph-check" aria-hidden="true"></i>Form M, PAAR, SONCAP and NAFDAC processing.</li>
+          <li><i class="ph-light ph-check" aria-hidden="true"></i>Port and airport customs clearance and cargo release.</li>
+          <li><i class="ph-light ph-check" aria-hidden="true"></i>Haulage, container handling and final delivery.</li>
         </ul>
         <a href="#quote" class="btn btn--primary" data-reveal="up" data-delay="350">Get a Quote</a>
       </div>
@@ -205,7 +188,8 @@
             <article class="service-card">
               <div class="service-card__img img-zoom"><img src="images/service-port.jpg" alt="Containers at a port terminal"></div>
               <div class="service-card__body">
-                <span class="service-card__icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>
+                <i class="ph-light ph-arrows-left-right service-card__icon" aria-hidden="true"></i>
+                <span class="service-card__num">01 <em>/ 05</em></span>
                 <h3>Import &amp; Export Services</h3>
                 <p>Complete import and export documentation and cargo processing, with general import/export consultancy to guide you through every requirement.</p>
                 <a href="#quote" class="btn btn--primary btn--sm">Get a Quote</a>
@@ -214,7 +198,8 @@
             <article class="service-card">
               <div class="service-card__img img-zoom"><img src="images/project-1.jpg" alt="Aerial view of stacked shipping containers"></div>
               <div class="service-card__body">
-                <span class="service-card__icon"><i class="fa-solid fa-stamp"></i></span>
+                <i class="ph-light ph-stamp service-card__icon" aria-hidden="true"></i>
+                <span class="service-card__num">02 <em>/ 05</em></span>
                 <h3>Customs Clearance</h3>
                 <p>Port and airport customs clearance, customs documentation, valuation and duty assessment support, through to cargo release.</p>
                 <a href="#quote" class="btn btn--primary btn--sm">Get a Quote</a>
@@ -223,7 +208,8 @@
             <article class="service-card">
               <div class="service-card__img img-zoom"><img src="images/service-air.jpg" alt="Airplane wing above the clouds"></div>
               <div class="service-card__body">
-                <span class="service-card__icon"><i class="fa-solid fa-plane-departure"></i></span>
+                <i class="ph-light ph-airplane-tilt service-card__icon" aria-hidden="true"></i>
+                <span class="service-card__num">03 <em>/ 05</em></span>
                 <h3>Sea &amp; Air Freight</h3>
                 <p>Freight forwarding and shipping coordination for cargo arriving or departing through seaports and airports, with cargo tracking.</p>
                 <a href="#quote" class="btn btn--primary btn--sm">Get a Quote</a>
@@ -232,7 +218,8 @@
             <article class="service-card">
               <div class="service-card__img img-zoom"><img src="images/service-road.jpg" alt="Haulage truck on the highway"></div>
               <div class="service-card__body">
-                <span class="service-card__icon"><i class="fa-solid fa-truck-moving"></i></span>
+                <i class="ph-light ph-truck-trailer service-card__icon" aria-hidden="true"></i>
+                <span class="service-card__num">04 <em>/ 05</em></span>
                 <h3>Transportation &amp; Haulage</h3>
                 <p>Container transportation, handling and delivery. We arrange haulage from the port or airport to your warehouse, store or site.</p>
                 <a href="#quote" class="btn btn--primary btn--sm">Get a Quote</a>
@@ -241,7 +228,8 @@
             <article class="service-card">
               <div class="service-card__img img-zoom"><img src="images/service-docs.jpg" alt="Signing regulatory documents"></div>
               <div class="service-card__body">
-                <span class="service-card__icon"><i class="fa-solid fa-file-signature"></i></span>
+                <i class="ph-light ph-signature service-card__icon" aria-hidden="true"></i>
+                <span class="service-card__num">05 <em>/ 05</em></span>
                 <h3>Documentation &amp; Compliance</h3>
                 <p>Form M, SONCAP / SON, PAAR, NAFDAC and other regulatory documentation, handled accurately to avoid delays and penalties.</p>
                 <a href="#quote" class="btn btn--primary btn--sm">Get a Quote</a>
@@ -261,20 +249,20 @@
         <h2 class="title" data-reveal="up" data-delay="100">Everything Your Cargo Needs</h2>
       </div>
       <div class="svc-list__grid">
-        <div class="svc-item" data-reveal="up"><i class="fa-solid fa-file-invoice"></i><span>Form M Processing</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="50"><i class="fa-solid fa-certificate"></i><span>SONCAP / SON Documentation</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="100"><i class="fa-solid fa-file-lines"></i><span>PAAR Processing</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="150"><i class="fa-solid fa-prescription-bottle-medical"></i><span>NAFDAC Documentation</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="200"><i class="fa-solid fa-stamp"></i><span>Customs Clearance &amp; Documentation</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="250"><i class="fa-solid fa-folder-open"></i><span>Import &amp; Export Documentation</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="300"><i class="fa-solid fa-anchor"></i><span>Sea &amp; Airport Cargo Clearance</span></div>
-        <div class="svc-item" data-reveal="up"><i class="fa-solid fa-ship"></i><span>Freight Forwarding &amp; Shipping</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="50"><i class="fa-solid fa-truck-fast"></i><span>Transportation &amp; Haulage</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="100"><i class="fa-solid fa-boxes-stacked"></i><span>Container Handling &amp; Delivery</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="150"><i class="fa-solid fa-scale-balanced"></i><span>Duty Assessment &amp; Valuation</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="200"><i class="fa-solid fa-location-crosshairs"></i><span>Cargo Tracking &amp; Release</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="250"><i class="fa-solid fa-comments"></i><span>Import / Export Consultancy</span></div>
-        <div class="svc-item" data-reveal="up" data-delay="300"><i class="fa-solid fa-route"></i><span>End-to-End Logistics Coordination</span></div>
+        <div class="svc-item" data-reveal="up"><i class="ph-light ph-file-text" aria-hidden="true"></i><span>Form M Processing</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="50"><i class="ph-light ph-certificate" aria-hidden="true"></i><span>SONCAP / SON Documentation</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="100"><i class="ph-light ph-receipt" aria-hidden="true"></i><span>PAAR Processing</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="150"><i class="ph-light ph-pill" aria-hidden="true"></i><span>NAFDAC Documentation</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="200"><i class="ph-light ph-stamp" aria-hidden="true"></i><span>Customs Clearance &amp; Documentation</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="250"><i class="ph-light ph-folder-open" aria-hidden="true"></i><span>Import &amp; Export Documentation</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="300"><i class="ph-light ph-anchor" aria-hidden="true"></i><span>Sea &amp; Airport Cargo Clearance</span></div>
+        <div class="svc-item" data-reveal="up"><i class="ph-light ph-boat" aria-hidden="true"></i><span>Freight Forwarding &amp; Shipping</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="50"><i class="ph-light ph-truck" aria-hidden="true"></i><span>Transportation &amp; Haulage</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="100"><i class="ph-light ph-shipping-container" aria-hidden="true"></i><span>Container Handling &amp; Delivery</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="150"><i class="ph-light ph-scales" aria-hidden="true"></i><span>Duty Assessment &amp; Valuation</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="200"><i class="ph-light ph-map-pin-line" aria-hidden="true"></i><span>Cargo Tracking &amp; Release</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="250"><i class="ph-light ph-chats-circle" aria-hidden="true"></i><span>Import / Export Consultancy</span></div>
+        <div class="svc-item" data-reveal="up" data-delay="300"><i class="ph-light ph-path" aria-hidden="true"></i><span>End-to-End Logistics Coordination</span></div>
       </div>
     </div>
   </section>
@@ -287,11 +275,11 @@
         <h2 class="title title--light" data-reveal="up" data-delay="100">What Makes Our Service Different</h2>
         <p class="text text--muted" data-reveal="up" data-delay="200">We handle the entire import and export process, so you deal with one trusted partner instead of many.</p>
         <ul class="projects__list" data-reveal="up" data-delay="300">
-          <li class="projects__item active" data-index="0"><i class="fa-solid fa-arrows-spin"></i> End-to-End Service</li>
-          <li class="projects__item" data-index="1"><i class="fa-solid fa-bullseye"></i> Accuracy &amp; Compliance</li>
-          <li class="projects__item" data-index="2"><i class="fa-solid fa-eye"></i> Transparency</li>
-          <li class="projects__item" data-index="3"><i class="fa-solid fa-stopwatch"></i> Timely Processing</li>
-          <li class="projects__item" data-index="4"><i class="fa-solid fa-headset"></i> Reliable Communication</li>
+          <li class="projects__item active" data-index="0"><i class="ph-light ph-arrows-clockwise" aria-hidden="true"></i>End-to-End Service</li>
+          <li class="projects__item" data-index="1"><i class="ph-light ph-target" aria-hidden="true"></i>Accuracy &amp; Compliance</li>
+          <li class="projects__item" data-index="2"><i class="ph-light ph-eye" aria-hidden="true"></i>Transparency</li>
+          <li class="projects__item" data-index="3"><i class="ph-light ph-timer" aria-hidden="true"></i>Timely Processing</li>
+          <li class="projects__item" data-index="4"><i class="ph-light ph-headset" aria-hidden="true"></i>Reliable Communication</li>
         </ul>
       </div>
 
@@ -323,25 +311,21 @@
       <div class="process__grid">
         <div class="process-step" data-reveal="up" data-delay="0">
           <span class="process-step__num">01</span>
-          <span class="process-step__icon"><i class="fa-solid fa-paper-plane"></i></span>
           <h4>Share Your Cargo Details</h4>
           <p>Tell us what you are importing or exporting, the origin, destination and mode of shipment.</p>
         </div>
         <div class="process-step" data-reveal="up" data-delay="150">
           <span class="process-step__num">02</span>
-          <span class="process-step__icon"><i class="fa-solid fa-file-signature"></i></span>
           <h4>Documentation &amp; Approvals</h4>
           <p>We process Form M, PAAR, SONCAP, NAFDAC and all other required documentation.</p>
         </div>
         <div class="process-step" data-reveal="up" data-delay="300">
           <span class="process-step__num">03</span>
-          <span class="process-step__icon"><i class="fa-solid fa-stamp"></i></span>
           <h4>Customs Clearance</h4>
           <p>We manage duty assessment, customs examination and release at the port or airport.</p>
         </div>
         <div class="process-step" data-reveal="up" data-delay="450">
           <span class="process-step__num">04</span>
-          <span class="process-step__icon"><i class="fa-solid fa-truck-ramp-box"></i></span>
           <h4>Haulage &amp; Delivery</h4>
           <p>Your cargo is transported and delivered safely to its final destination.</p>
         </div>
@@ -358,11 +342,11 @@
         <p class="text text--muted" data-reveal="up" data-delay="200">Whether you ship one container or many, we support clients moving cargo to and from any part of the world.</p>
       </div>
       <div class="serve__grid">
-        <div class="serve-card" data-reveal="up" data-delay="0"><i class="fa-solid fa-box-open"></i><h4>Importers</h4></div>
-        <div class="serve-card" data-reveal="up" data-delay="100"><i class="fa-solid fa-earth-africa"></i><h4>Exporters</h4></div>
-        <div class="serve-card" data-reveal="up" data-delay="200"><i class="fa-solid fa-industry"></i><h4>Manufacturers</h4></div>
-        <div class="serve-card" data-reveal="up" data-delay="300"><i class="fa-solid fa-store"></i><h4>Traders</h4></div>
-        <div class="serve-card" data-reveal="up" data-delay="400"><i class="fa-solid fa-building"></i><h4>Businesses</h4></div>
+        <div class="serve-card" data-reveal="up" data-delay="0"><i class="ph-light ph-package" aria-hidden="true"></i><h4>Importers</h4><p>Form M, PAAR and customs clearance for goods coming into Nigeria.</p></div>
+        <div class="serve-card" data-reveal="up" data-delay="100"><i class="ph-light ph-globe-hemisphere-east" aria-hidden="true"></i><h4>Exporters</h4><p>Export documentation and shipping coordination for outbound cargo.</p></div>
+        <div class="serve-card" data-reveal="up" data-delay="200"><i class="ph-light ph-factory" aria-hidden="true"></i><h4>Manufacturers</h4><p>Machinery and raw materials cleared and delivered to your factory.</p></div>
+        <div class="serve-card" data-reveal="up" data-delay="300"><i class="ph-light ph-storefront" aria-hidden="true"></i><h4>Traders</h4><p>Regular consignments cleared quickly so your stock keeps moving.</p></div>
+        <div class="serve-card" data-reveal="up" data-delay="400"><i class="ph-light ph-buildings" aria-hidden="true"></i><h4>Businesses</h4><p>End-to-end logistics support for any company moving goods.</p></div>
       </div>
     </div>
   </section>
@@ -375,10 +359,10 @@
         <h2 class="title" data-reveal="up" data-delay="100">Tell Us About Your Cargo</h2>
         <p class="text" data-reveal="up" data-delay="200">Send us your cargo details and we will get back to you with a quotation. Prefer to talk? Call or WhatsApp us directly.</p>
         <ul class="quote__contacts" data-reveal="up" data-delay="300">
-          <li><span><i class="fa-solid fa-phone"></i></span><div><small>Call Us</small><a href="tel:+2348075769997">0807 576 9997</a></div></li>
-          <li><span><i class="fa-brands fa-whatsapp"></i></span><div><small>WhatsApp</small><a href="https://wa.me/2348075769997" target="_blank" rel="noopener">Chat with us</a></div></li>
-          <li><span><i class="fa-solid fa-envelope"></i></span><div><small>Email</small><a href="mailto:info@markway.com">info@markway.com</a></div></li>
-          <li><span><i class="fa-solid fa-clock"></i></span><div><small>Business Hours</small><p>Mon – Fri: 8:00am – 6:00pm<br>Sat: 9:00am – 2:00pm</p></div></li>
+          <li><i class="ph-light ph-phone" aria-hidden="true"></i><div><small>Call Us</small><a href="tel:+2348075769997">0807 576 9997</a></div></li>
+          <li><i class="ph-light ph-whatsapp-logo" aria-hidden="true"></i><div><small>WhatsApp</small><a href="https://wa.me/2348075769997" target="_blank" rel="noopener">Chat with us</a></div></li>
+          <li><i class="ph-light ph-envelope-simple" aria-hidden="true"></i><div><small>Email</small><a href="mailto:info@markway.com">info@markway.com</a></div></li>
+          <li><i class="ph-light ph-clock" aria-hidden="true"></i><div><small>Business Hours</small><p>Monday to Friday, 8am to 6pm<br>Saturday, 9am to 2pm</p></div></li>
         </ul>
       </div>
 
@@ -466,67 +450,40 @@
   <!-- ============ FOOTER ============ -->
   <footer class="footer" id="contact">
     <div class="container">
-      <div class="footer__top" data-reveal="up">
-        <div>
-          <h3>Need cargo cleared? Let's talk.</h3>
-          <p>Call, email or WhatsApp us today for fast, reliable assistance.</p>
-        </div>
-        <div class="footer__cta">
-          <a href="https://wa.me/2348075769997" target="_blank" rel="noopener" class="btn btn--gold"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
-          <a href="tel:+2348075769997" class="btn btn--outline"><i class="fa-solid fa-phone"></i> Call Now</a>
-        </div>
+      <ul class="footer__nav" data-reveal="up">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why Choose Us</a></li>
+        <li><a href="#quote">Request a Quote</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <div class="footer__social" data-reveal="up" data-delay="100">
+        <a href="https://wa.me/2348075769997" target="_blank" rel="noopener"><span><i class="fa-brands fa-whatsapp"></i></span>WhatsApp</a>
+        <a href="https://instagram.com/nso.markway" target="_blank" rel="noopener"><span><i class="fa-brands fa-instagram"></i></span>Instagram</a>
+        <a href="mailto:info@markway.com"><span><i class="fa-solid fa-envelope"></i></span>Email</a>
+        <a href="tel:+2348075769997"><span><i class="fa-solid fa-phone"></i></span>Call</a>
       </div>
 
-      <div class="footer__grid">
-        <div class="footer__col" data-reveal="up" data-delay="0">
-          <a href="#home" class="logo logo--light">
-            <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2 44 10v14c0 12-10 20-20 22C14 44 4 36 4 24V10z" fill="#7b1113"/><path d="M13 33V16l11 11 11-11v17" fill="none" stroke="#c9a227" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>
-            <span class="logo__text">MARK<b>WAY</b><small>Clearing &amp; Forwarding</small></span>
-          </a>
-          <p>Comprehensive clearing, forwarding, import and export logistics services for sea, air and land cargo.</p>
-          <div class="footer__social">
-            <a href="https://wa.me/2348075769997" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://instagram.com/nso.markway" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="mailto:info@markway.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-          </div>
-        </div>
-        <div class="footer__col" data-reveal="up" data-delay="100">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#why-us">Why Choose Us</a></li>
-            <li><a href="#quote">Request a Quote</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer__col" data-reveal="up" data-delay="200">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#services" data-service="0">Import &amp; Export</a></li>
-            <li><a href="#services" data-service="1">Customs Clearance</a></li>
-            <li><a href="#services" data-service="2">Sea &amp; Air Freight</a></li>
-            <li><a href="#services" data-service="3">Transportation &amp; Haulage</a></li>
-            <li><a href="#services" data-service="4">Documentation &amp; Compliance</a></li>
-          </ul>
-        </div>
-        <div class="footer__col" data-reveal="up" data-delay="300">
-          <h4>Contact Info</h4>
-          <ul class="footer__contact">
-            <li><i class="fa-solid fa-location-dot"></i> 17 Commercial Road, Apapa, Lagos, Nigeria</li>
-            <li><i class="fa-solid fa-phone"></i> <a href="tel:+2348075769997">0807 576 9997</a></li>
-            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@markway.com">info@markway.com</a></li>
-            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:director@markway.com">director@markway.com</a></li>
-          </ul>
-        </div>
+      <div class="footer__message" data-reveal="up" data-delay="200">
+        <h3>We're based in Apapa, Lagos.</h3>
+        <p>We clear and deliver cargo from any part of the world. Get in touch with us!</p>
+      </div>
+
+      <div class="footer__contact" data-reveal="up" data-delay="300">
+        <a href="mailto:info@markway.com" class="footer__email"><i class="fa-solid fa-envelope"></i> info@markway.com</a>
+        <a href="tel:+2348075769997"><i class="fa-solid fa-phone"></i> 0807 576 9997</a>
+        <a href="https://maps.google.com/?q=17+Commercial+Road+Apapa+Lagos" target="_blank" rel="noopener" class="footer__office">
+          <i class="fa-solid fa-building"></i>
+          <span><strong>Markway Head Office</strong>17 Commercial Road, Apapa, Lagos</span>
+        </a>
       </div>
     </div>
+
     <div class="footer__bottom">
-      <div class="container">© <span id="year"></span> Mark P N O Unique Way Enterprises (Markway). All Rights Reserved.</div>
+      <div class="container">© <span id="year"></span> Mark P N O Unique Way Enterprises. All rights reserved.</div>
     </div>
   </footer>
-
-  <a href="https://wa.me/2348075769997" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
   <button class="to-top" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
   <div class="toast" id="toast"></div>
 

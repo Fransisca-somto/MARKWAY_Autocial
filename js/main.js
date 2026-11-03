@@ -52,10 +52,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const burger = $("#burger");
   const nav = $("#nav");
   const MOBILE_NAV = 1100;
-  burger.addEventListener("click", () => {
+  const closeNav = () => {
+    burger.classList.remove("open");
+    nav.classList.remove("open");
+  };
+  burger.addEventListener("click", e => {
+    e.stopPropagation();
     burger.classList.toggle("open");
     nav.classList.toggle("open");
   });
+  $("#navClose").addEventListener("click", closeNav);
+  // tapping the dimmed page outside the panel closes it
+  document.addEventListener("click", e => {
+    if (nav.classList.contains("open") && !nav.contains(e.target)) closeNav();
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeNav(); });
   $$(".nav a").forEach(a => a.addEventListener("click", e => {
     const parent = a.parentElement;
     if (parent.classList.contains("has-dropdown") && window.innerWidth <= MOBILE_NAV) {
@@ -63,8 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       parent.classList.toggle("open");
       return;
     }
-    burger.classList.remove("open");
-    nav.classList.remove("open");
+    closeNav();
   }));
 
   /* ---------- Hero slider ---------- */
