@@ -7,12 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const WHATSAPP_NUMBER = "2348075769997";
 
-  /* ---------- Preloader ---------- */
-  const preloader = $("#preloader");
-  const hidePreloader = () => preloader.classList.add("hidden");
-  window.addEventListener("load", () => setTimeout(hidePreloader, 300));
-  setTimeout(hidePreloader, 3000); // fallback if images are slow
-
   $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Toast ---------- */
@@ -106,10 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      el.style.transitionDelay = (el.dataset.delay || 0) + "ms";
+      el.style.transitionDelay = (el.dataset.delay || 0) / 2 + "ms";
       el.classList.add("revealed");
       // clear the delay afterwards so hover transitions stay snappy
-      setTimeout(() => { el.style.transitionDelay = ""; }, 1000 + Number(el.dataset.delay || 0));
+      setTimeout(() => { el.style.transitionDelay = ""; }, 700 + Number(el.dataset.delay || 0) / 2);
       obs.unobserve(el);
     });
   }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
