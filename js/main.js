@@ -87,6 +87,49 @@ document.addEventListener("DOMContentLoaded", () => {
     goToSlide(0);
   }
 
+  /* ---------- Scroll reveal (home) ---------- */
+  const revealObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.style.transitionDelay = (el.dataset.delay || 0) / 2 + "ms";
+      el.classList.add("revealed");
+      // clear the delay afterwards so hover transitions stay snappy
+      setTimeout(() => { el.style.transitionDelay = ""; }, 700 + Number(el.dataset.delay || 0) / 2);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+  $$("[data-reveal]").forEach(el => revealObserver.observe(el));
+
+  /* ---------- Process line draw (home) ---------- */
+  const processGrid = $(".home .process__grid");
+  if (processGrid) {
+    new IntersectionObserver((entries, obs) => {
+      if (!entries[0].isIntersecting) return;
+      processGrid.classList.add("drawn");
+      obs.disconnect();
+    }, { threshold: 0.4 }).observe(processGrid);
+  }
+
+  /* ---------- Counter (home) ---------- */
+  const counterObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      const duration = 1800;
+      const start = performance.now();
+      const tick = now => {
+        const p = Math.min((now - start) / duration, 1);
+        el.textContent = Math.floor(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  $$(".counter").forEach(el => counterObserver.observe(el));
+
   /* ---------- Services carousel + tabs (home) ---------- */
   const track = $("#svcTrack");
   if (track) {

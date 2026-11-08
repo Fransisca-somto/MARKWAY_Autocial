@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="home">
 
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
@@ -107,9 +107,9 @@
   <section class="section about" id="about">
     <div class="container about__grid">
       <div class="about__content">
-        <span class="subtitle">About Us</span>
-        <h2 class="title">Your One-Stop Partner for Clearing, Forwarding &amp; Logistics</h2>
-        <div class="about__features">
+        <span class="subtitle" data-reveal="up">About Us</span>
+        <h2 class="title" data-reveal="up" data-delay="100">Your One-Stop Partner for Clearing, Forwarding &amp; Logistics</h2>
+        <div class="about__features" data-reveal="up" data-delay="200">
           <div class="about__feature">
             <i class="ph-light ph-boat" aria-hidden="true"></i>
             <h4>Sea, Air &amp; Land Cargo</h4>
@@ -119,23 +119,23 @@
             <h4>Regulatory Documentation &amp; Compliance</h4>
           </div>
         </div>
-        <p class="text">Mark P N O Unique Way Enterprises (Markway) provides comprehensive clearing, forwarding, import and export logistics services. We assist importers, exporters, manufacturers, traders and businesses with the documentation, regulatory processes, customs clearance and transportation required to move their goods efficiently from origin to final destination.</p>
-        <ul class="checklist">
+        <p class="text" data-reveal="up" data-delay="250">Mark P N O Unique Way Enterprises (Markway) provides comprehensive clearing, forwarding, import and export logistics services. We assist importers, exporters, manufacturers, traders and businesses with the documentation, regulatory processes, customs clearance and transportation required to move their goods efficiently from origin to final destination.</p>
+        <ul class="checklist" data-reveal="up" data-delay="300">
           <li><i class="ph-light ph-check" aria-hidden="true"></i>Form M, PAAR, SONCAP and NAFDAC processing.</li>
           <li><i class="ph-light ph-check" aria-hidden="true"></i>Port and airport customs clearance and cargo release.</li>
           <li><i class="ph-light ph-check" aria-hidden="true"></i>Haulage, container handling and final delivery.</li>
         </ul>
-        <a href="about.html" class="btn btn--primary">More About Us</a>
+        <a href="about.html" class="btn btn--primary" data-reveal="up" data-delay="350">More About Us</a>
       </div>
       <div class="about__media">
-        <div class="about__img-main">
+        <div class="about__img-main img-zoom" data-reveal="right">
           <img src="images/about-main.jpg" alt="Aerial view of a container port">
         </div>
-        <div class="about__badge">
-          <h3>14</h3>
+        <div class="about__badge" data-reveal="zoom" data-delay="300">
+          <h3><span class="counter" data-target="14">0</span></h3>
           <p>Specialized<br>Logistics Services</p>
         </div>
-        <div class="about__img-small">
+        <div class="about__img-small img-zoom" data-reveal="up" data-delay="400">
           <img src="images/about-small.jpg" alt="Container ship at sea">
         </div>
       </div>
@@ -146,10 +146,10 @@
   <section class="cta" style="background-image:url('images/cta-bg.jpg')">
     <div class="container cta__inner">
       <div>
-        <span class="cta__tag">Avoid Delays &amp; Extra Costs</span>
-        <h2 class="cta__title">One partner for your documentation, customs clearance, transport and delivery</h2>
+        <span class="cta__tag" data-reveal="left">Avoid Delays &amp; Extra Costs</span>
+        <h2 class="cta__title" data-reveal="left" data-delay="100">One partner for your documentation, customs clearance, transport and delivery</h2>
       </div>
-      <a href="quote.html" class="btn btn--gold">Request a Quote</a>
+      <a href="quote.html" class="btn btn--gold" data-reveal="right" data-delay="200">Request a Quote</a>
     </div>
   </section>
 
@@ -157,13 +157,13 @@
   <section class="section services" id="services">
     <div class="container">
       <div class="section-head">
-        <span class="subtitle">Our Services</span>
-        <h2 class="title">Clearing, Forwarding &amp; Logistics <br>Under One Roof</h2>
-        <p class="text">We help businesses handle their complete import and export documentation, customs clearance, cargo movement and delivery, from origin to final destination.</p>
+        <span class="subtitle" data-reveal="up">Our Services</span>
+        <h2 class="title" data-reveal="up" data-delay="100">Clearing, Forwarding &amp; Logistics <br>Under One Roof</h2>
+        <p class="text" data-reveal="up" data-delay="200">We help businesses handle their complete import and export documentation, customs clearance, cargo movement and delivery, from origin to final destination.</p>
       </div>
 
       <div class="services__wrap">
-        <div class="services__side">
+        <div class="services__side" data-reveal="left">
           <button class="services__arrow" id="svcPrev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button>
           <div class="services__tabs">
             <button class="services__tab active" data-index="0">Import &amp; Export</button>
@@ -175,10 +175,10 @@
           <button class="services__arrow" id="svcNext" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
 
-        <div class="services__viewport">
+        <div class="services__viewport" data-reveal="up" data-delay="150">
           <div class="services__track" id="svcTrack">
             <article class="service-card">
-              <div class="service-card__img"><img src="images/service-port.jpg" alt="Containers at a port terminal"></div>
+              <div class="service-card__img img-zoom"><img src="images/service-port.jpg" alt="Containers at a port terminal"></div>
               <div class="service-card__body">
                 <i class="ph-light ph-arrows-left-right service-card__icon" aria-hidden="true"></i>
                 <span class="service-card__num">01 <em>/ 05</em></span>
@@ -188,7 +188,7 @@
               </div>
             </article>
             <article class="service-card">
-              <div class="service-card__img"><img src="images/project-1.jpg" alt="Aerial view of stacked shipping containers"></div>
+              <div class="service-card__img img-zoom"><img src="images/project-1.jpg" alt="Aerial view of stacked shipping containers"></div>
               <div class="service-card__body">
                 <i class="ph-light ph-stamp service-card__icon" aria-hidden="true"></i>
                 <span class="service-card__num">02 <em>/ 05</em></span>
@@ -198,7 +198,7 @@
               </div>
             </article>
             <article class="service-card">
-              <div class="service-card__img"><img src="images/service-air.jpg" alt="Airplane wing above the clouds"></div>
+              <div class="service-card__img img-zoom"><img src="images/service-air.jpg" alt="Airplane wing above the clouds"></div>
               <div class="service-card__body">
                 <i class="ph-light ph-airplane-tilt service-card__icon" aria-hidden="true"></i>
                 <span class="service-card__num">03 <em>/ 05</em></span>
@@ -208,7 +208,7 @@
               </div>
             </article>
             <article class="service-card">
-              <div class="service-card__img"><img src="images/service-road.jpg" alt="Haulage truck on the highway"></div>
+              <div class="service-card__img img-zoom"><img src="images/service-road.jpg" alt="Haulage truck on the highway"></div>
               <div class="service-card__body">
                 <i class="ph-light ph-truck-trailer service-card__icon" aria-hidden="true"></i>
                 <span class="service-card__num">04 <em>/ 05</em></span>
@@ -218,7 +218,7 @@
               </div>
             </article>
             <article class="service-card">
-              <div class="service-card__img"><img src="images/service-docs.jpg" alt="Signing regulatory documents"></div>
+              <div class="service-card__img img-zoom"><img src="images/service-docs.jpg" alt="Signing regulatory documents"></div>
               <div class="service-card__body">
                 <i class="ph-light ph-signature service-card__icon" aria-hidden="true"></i>
                 <span class="service-card__num">05 <em>/ 05</em></span>
@@ -231,7 +231,7 @@
         </div>
       </div>
 
-      <div class="section-foot">
+      <div class="section-foot" data-reveal="up">
         <a href="services.html" class="btn btn--primary">View All Services</a>
       </div>
     </div>
@@ -241,10 +241,10 @@
   <section class="section projects" id="why-us">
     <div class="container projects__grid">
       <div class="projects__content">
-        <span class="subtitle subtitle--gold">Why Choose Us</span>
-        <h2 class="title title--light">What Makes Our Service Different</h2>
-        <p class="text text--muted">We handle the entire import and export process, so you deal with one trusted partner instead of many.</p>
-        <ul class="projects__list">
+        <span class="subtitle subtitle--gold" data-reveal="up">Why Choose Us</span>
+        <h2 class="title title--light" data-reveal="up" data-delay="100">What Makes Our Service Different</h2>
+        <p class="text text--muted" data-reveal="up" data-delay="200">We handle the entire import and export process, so you deal with one trusted partner instead of many.</p>
+        <ul class="projects__list" data-reveal="up" data-delay="300">
           <li class="projects__item active" data-index="0"><i class="ph-light ph-arrows-clockwise" aria-hidden="true"></i>End-to-End Service</li>
           <li class="projects__item" data-index="1"><i class="ph-light ph-target" aria-hidden="true"></i>Accuracy &amp; Compliance</li>
           <li class="projects__item" data-index="2"><i class="ph-light ph-eye" aria-hidden="true"></i>Transparency</li>
@@ -253,7 +253,7 @@
         </ul>
       </div>
 
-      <div class="projects__showcase">
+      <div class="projects__showcase" data-reveal="right" data-delay="200">
         <div class="projects__image">
           <img src="images/project-1.jpg" alt="" class="active">
           <img src="images/service-docs.jpg" alt="">
@@ -274,27 +274,27 @@
   <section class="section process">
     <div class="container">
       <div class="section-head">
-        <span class="subtitle">How It Works</span>
-        <h2 class="title">From Origin To Final Destination</h2>
-        <p class="text">A clear, simple process that keeps you informed at every stage.</p>
+        <span class="subtitle" data-reveal="up">How It Works</span>
+        <h2 class="title" data-reveal="up" data-delay="100">From Origin To Final Destination</h2>
+        <p class="text" data-reveal="up" data-delay="200">A clear, simple process that keeps you informed at every stage.</p>
       </div>
       <div class="process__grid">
-        <div class="process-step">
+        <div class="process-step" data-reveal="up" data-delay="0">
           <span class="process-step__num">01</span>
           <h4>Share Your Cargo Details</h4>
           <p>Tell us what you are importing or exporting, the origin, destination and mode of shipment.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-reveal="up" data-delay="0">
           <span class="process-step__num">02</span>
           <h4>Documentation &amp; Approvals</h4>
           <p>We process Form M, PAAR, SONCAP, NAFDAC and all other required documentation.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-reveal="up" data-delay="0">
           <span class="process-step__num">03</span>
           <h4>Customs Clearance</h4>
           <p>We manage duty assessment, customs examination and release at the port or airport.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-reveal="up" data-delay="0">
           <span class="process-step__num">04</span>
           <h4>Haulage &amp; Delivery</h4>
           <p>Your cargo is transported and delivered safely to its final destination.</p>
@@ -307,19 +307,19 @@
   <section class="cta" style="background-image:url('images/hero-2.jpg')">
     <div class="container cta__inner">
       <div>
-        <span class="cta__tag">Ready When You Are</span>
-        <h2 class="cta__title">Tell us about your cargo and get a quotation on WhatsApp</h2>
+        <span class="cta__tag" data-reveal="left">Ready When You Are</span>
+        <h2 class="cta__title" data-reveal="left" data-delay="100">Tell us about your cargo and get a quotation on WhatsApp</h2>
       </div>
-      <a href="quote.html" class="btn btn--gold">Get a Quote</a>
+      <a href="quote.html" class="btn btn--gold" data-reveal="right" data-delay="200">Get a Quote</a>
     </div>
   </section>
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
-      <a href="index.html" class="footer__logo"><img src="images/markway-logo.png" alt="Markway Import &amp; Export Logistics" width="640" height="471" loading="lazy"></a>
+      <a href="index.html" class="footer__logo" data-reveal="up"><img src="images/markway-logo.png" alt="Markway Import &amp; Export Logistics" width="640" height="471" loading="lazy"></a>
 
-      <ul class="footer__nav">
+      <ul class="footer__nav" data-reveal="up">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
@@ -328,19 +328,19 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
 
-      <div class="footer__social">
+      <div class="footer__social" data-reveal="up" data-delay="100">
         <a href="https://wa.me/2348075769997" target="_blank" rel="noopener"><span><i class="fa-brands fa-whatsapp"></i></span>WhatsApp</a>
         <a href="https://instagram.com/nso.markway" target="_blank" rel="noopener"><span><i class="fa-brands fa-instagram"></i></span>Instagram</a>
         <a href="mailto:info@markway.com"><span><i class="fa-solid fa-envelope"></i></span>Email</a>
         <a href="tel:+2348075769997"><span><i class="fa-solid fa-phone"></i></span>Call</a>
       </div>
 
-      <div class="footer__message">
+      <div class="footer__message" data-reveal="up" data-delay="200">
         <h3>We're based in Apapa, Lagos.</h3>
         <p>We clear and deliver cargo from any part of the world. Get in touch with us!</p>
       </div>
 
-      <div class="footer__contact">
+      <div class="footer__contact" data-reveal="up" data-delay="300">
         <a href="mailto:info@markway.com" class="footer__email"><i class="fa-solid fa-envelope"></i> info@markway.com</a>
         <a href="tel:+2348075769997"><i class="fa-solid fa-phone"></i> 0807 576 9997</a>
         <a href="https://maps.google.com/?q=17+Commercial+Road+Apapa+Lagos" target="_blank" rel="noopener" class="footer__office">
