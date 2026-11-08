@@ -7,12 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const WHATSAPP_NUMBER = "2348075769997";
 
-  /* ---------- Preloader ---------- */
-  const preloader = $("#preloader");
-  const hidePreloader = () => preloader.classList.add("hidden");
-  window.addEventListener("load", () => setTimeout(hidePreloader, 300));
-  setTimeout(hidePreloader, 3000); // fallback if images are slow
-
   $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Toast ---------- */
@@ -106,10 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      el.style.transitionDelay = (el.dataset.delay || 0) + "ms";
+      el.style.transitionDelay = (el.dataset.delay || 0) / 2 + "ms";
       el.classList.add("revealed");
       // clear the delay afterwards so hover transitions stay snappy
-      setTimeout(() => { el.style.transitionDelay = ""; }, 1000 + Number(el.dataset.delay || 0));
+      setTimeout(() => { el.style.transitionDelay = ""; }, 700 + Number(el.dataset.delay || 0) / 2);
       obs.unobserve(el);
     });
   }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
@@ -166,6 +160,51 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#svcNext").addEventListener("click", () => showService(activeTab + 1));
   $("#svcPrev").addEventListener("click", () => showService(activeTab - 1));
   window.addEventListener("resize", renderServices);
+
+  // Swipe (touch) or drag (mouse) the cards to change service
+  const svcViewport = track.parentElement;
+  let startX = 0, startY = 0, dragX = 0, dragging = false, horizontal = false, suppressClick = false;
+  const baseOffset = () => svcIndex * (cards[0].offsetWidth + (parseFloat(getComputedStyle(track).gap) || 0));
+
+  svcViewport.addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    dragging = true; horizontal = false; dragX = 0;
+    startX = e.clientX; startY = e.clientY;
+  });
+  svcViewport.addEventListener("pointermove", e => {
+    if (!dragging) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    if (!horizontal) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      if (Math.abs(dy) > Math.abs(dx)) { dragging = false; return; } // let the page scroll
+      horizontal = true;
+      track.style.transition = "none";
+      svcViewport.classList.add("dragging");
+      svcViewport.setPointerCapture(e.pointerId);
+    }
+    dragX = dx;
+    // resist past the first and last card
+    const atEdge = (svcIndex === 0 && dx > 0) || (svcIndex === maxIndex() && dx < 0);
+    track.style.transform = `translateX(${-baseOffset() + (atEdge ? dx / 3 : dx)}px)`;
+  });
+  const endDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    track.style.transition = "";
+    svcViewport.classList.remove("dragging");
+    if (!horizontal) return;
+    suppressClick = Math.abs(dragX) > 6;
+    const threshold = Math.min(70, cards[0].offsetWidth * 0.18);
+    if (dragX < -threshold && activeTab < cards.length - 1) showService(activeTab + 1);
+    else if (dragX > threshold && activeTab > 0) showService(activeTab - 1);
+    else renderServices(); // snap back
+  };
+  svcViewport.addEventListener("pointerup", endDrag);
+  svcViewport.addEventListener("pointercancel", endDrag);
+  // a drag that ends over a "Get a Quote" button should not count as a click
+  svcViewport.addEventListener("click", e => {
+    if (suppressClick) { e.preventDefault(); e.stopPropagation(); suppressClick = false; }
+  }, true);
 
   // Menu / footer links that point to a specific service
   $$("a[data-service]").forEach(a => a.addEventListener("click", () => showService(+a.dataset.service)));
