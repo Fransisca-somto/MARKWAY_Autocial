@@ -1,5 +1,6 @@
 /* =========================================================
    Markway – interactions & animations
+   Shared by every page; each block only runs when its markup exists.
    ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
@@ -31,17 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
   onScroll();
   toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-  /* ---------- Active nav link on scroll ---------- */
-  const navLinks = $$(".nav__link[href^='#']").filter(a => a.getAttribute("href").length > 1);
-  const sections = navLinks.map(a => $(a.getAttribute("href"))).filter(Boolean);
-  const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
-    });
-  }, { rootMargin: "-45% 0px -50% 0px" });
-  sections.forEach(s => navObserver.observe(s));
-
   /* ---------- Mobile menu ---------- */
   const burger = $("#burger");
   const nav = $("#nav");
@@ -71,167 +61,129 @@ document.addEventListener("DOMContentLoaded", () => {
     closeNav();
   }));
 
-  /* ---------- Hero slider ---------- */
+  /* ---------- Hero slider (home) ---------- */
   const slides = $$(".hero__slide");
-  const progress = $("#heroProgress");
-  const HERO_DELAY = 6000;
-  let heroIndex = 0;
-  let heroTimer;
+  if (slides.length) {
+    const progress = $("#heroProgress");
+    const HERO_DELAY = 6000;
+    let heroIndex = 0;
+    let heroTimer;
 
-  const restartProgress = () => {
-    progress.classList.remove("run");
-    void progress.offsetWidth; // force reflow so the animation restarts
-    progress.classList.add("run");
-  };
-  const goToSlide = i => {
-    slides[heroIndex].classList.remove("active");
-    heroIndex = (i + slides.length) % slides.length;
-    slides[heroIndex].classList.add("active");
-    restartProgress();
-    clearTimeout(heroTimer);
-    heroTimer = setTimeout(() => goToSlide(heroIndex + 1), HERO_DELAY);
-  };
-  $("#heroNext").addEventListener("click", () => goToSlide(heroIndex + 1));
-  $("#heroPrev").addEventListener("click", () => goToSlide(heroIndex - 1));
-  goToSlide(0);
+    const restartProgress = () => {
+      progress.classList.remove("run");
+      void progress.offsetWidth; // force reflow so the animation restarts
+      progress.classList.add("run");
+    };
+    const goToSlide = i => {
+      slides[heroIndex].classList.remove("active");
+      heroIndex = (i + slides.length) % slides.length;
+      slides[heroIndex].classList.add("active");
+      restartProgress();
+      clearTimeout(heroTimer);
+      heroTimer = setTimeout(() => goToSlide(heroIndex + 1), HERO_DELAY);
+    };
+    $("#heroNext").addEventListener("click", () => goToSlide(heroIndex + 1));
+    $("#heroPrev").addEventListener("click", () => goToSlide(heroIndex - 1));
+    goToSlide(0);
+  }
 
-  /* ---------- Scroll reveal ---------- */
-  const revealObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      el.style.transitionDelay = (el.dataset.delay || 0) / 2 + "ms";
-      el.classList.add("revealed");
-      // clear the delay afterwards so hover transitions stay snappy
-      setTimeout(() => { el.style.transitionDelay = ""; }, 700 + Number(el.dataset.delay || 0) / 2);
-      obs.unobserve(el);
-    });
-  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
-  $$("[data-reveal]").forEach(el => revealObserver.observe(el));
-
-  /* ---------- Process line draw ---------- */
-  const processGrid = $(".process__grid");
-  new IntersectionObserver((entries, obs) => {
-    if (!entries[0].isIntersecting) return;
-    processGrid.classList.add("drawn");
-    obs.disconnect();
-  }, { threshold: 0.4 }).observe(processGrid);
-
-  /* ---------- Counter ---------- */
-  const counterObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = +el.dataset.target;
-      const duration = 1800;
-      const start = performance.now();
-      const tick = now => {
-        const p = Math.min((now - start) / duration, 1);
-        el.textContent = Math.floor(target * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      obs.unobserve(el);
-    });
-  }, { threshold: 0.6 });
-  $$(".counter").forEach(el => counterObserver.observe(el));
-
-  /* ---------- Services carousel + tabs ---------- */
+  /* ---------- Services carousel + tabs (home) ---------- */
   const track = $("#svcTrack");
-  const cards = [...track.children];
-  const svcTabs = $$(".services__tab");
-  const perView = () => (window.innerWidth <= 680 ? 1 : 2);
-  const maxIndex = () => Math.max(0, cards.length - perView());
-  let svcIndex = 0;   // first visible card
-  let activeTab = 0;  // highlighted service
+  if (track) {
+    const cards = [...track.children];
+    const svcTabs = $$(".services__tab");
+    const perView = () => (window.innerWidth <= 680 ? 1 : 2);
+    const maxIndex = () => Math.max(0, cards.length - perView());
+    let svcIndex = 0;   // first visible card
+    let activeTab = 0;  // highlighted service
 
-  const renderServices = () => {
-    svcIndex = Math.min(svcIndex, maxIndex());
-    const gap = parseFloat(getComputedStyle(track).gap) || 0;
-    track.style.transform = `translateX(-${svcIndex * (cards[0].offsetWidth + gap)}px)`;
-    svcTabs.forEach((t, n) => t.classList.toggle("active", n === activeTab));
-  };
-  const showService = i => {
-    activeTab = (i + cards.length) % cards.length;
-    svcIndex = Math.min(activeTab, maxIndex());
-    renderServices();
-  };
-  svcTabs.forEach(tab => tab.addEventListener("click", () => showService(+tab.dataset.index)));
-  $("#svcNext").addEventListener("click", () => showService(activeTab + 1));
-  $("#svcPrev").addEventListener("click", () => showService(activeTab - 1));
-  window.addEventListener("resize", renderServices);
+    const renderServices = () => {
+      svcIndex = Math.min(svcIndex, maxIndex());
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      track.style.transform = `translateX(-${svcIndex * (cards[0].offsetWidth + gap)}px)`;
+      svcTabs.forEach((t, n) => t.classList.toggle("active", n === activeTab));
+    };
+    const showService = i => {
+      activeTab = (i + cards.length) % cards.length;
+      svcIndex = Math.min(activeTab, maxIndex());
+      renderServices();
+    };
+    svcTabs.forEach(tab => tab.addEventListener("click", () => showService(+tab.dataset.index)));
+    $("#svcNext").addEventListener("click", () => showService(activeTab + 1));
+    $("#svcPrev").addEventListener("click", () => showService(activeTab - 1));
+    window.addEventListener("resize", renderServices);
 
-  // Swipe (touch) or drag (mouse) the cards to change service
-  const svcViewport = track.parentElement;
-  let startX = 0, startY = 0, dragX = 0, dragging = false, horizontal = false, suppressClick = false;
-  const baseOffset = () => svcIndex * (cards[0].offsetWidth + (parseFloat(getComputedStyle(track).gap) || 0));
+    // Swipe (touch) or drag (mouse) the cards to change service
+    const svcViewport = track.parentElement;
+    let startX = 0, startY = 0, dragX = 0, dragging = false, horizontal = false, suppressClick = false;
+    const baseOffset = () => svcIndex * (cards[0].offsetWidth + (parseFloat(getComputedStyle(track).gap) || 0));
 
-  svcViewport.addEventListener("pointerdown", e => {
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-    dragging = true; horizontal = false; dragX = 0;
-    startX = e.clientX; startY = e.clientY;
-  });
-  svcViewport.addEventListener("pointermove", e => {
-    if (!dragging) return;
-    const dx = e.clientX - startX, dy = e.clientY - startY;
-    if (!horizontal) {
-      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
-      if (Math.abs(dy) > Math.abs(dx)) { dragging = false; return; } // let the page scroll
-      horizontal = true;
-      track.style.transition = "none";
-      svcViewport.classList.add("dragging");
-      svcViewport.setPointerCapture(e.pointerId);
-    }
-    dragX = dx;
-    // resist past the first and last card
-    const atEdge = (svcIndex === 0 && dx > 0) || (svcIndex === maxIndex() && dx < 0);
-    track.style.transform = `translateX(${-baseOffset() + (atEdge ? dx / 3 : dx)}px)`;
-  });
-  const endDrag = () => {
-    if (!dragging) return;
-    dragging = false;
-    track.style.transition = "";
-    svcViewport.classList.remove("dragging");
-    if (!horizontal) return;
-    suppressClick = Math.abs(dragX) > 6;
-    const threshold = Math.min(70, cards[0].offsetWidth * 0.18);
-    if (dragX < -threshold && activeTab < cards.length - 1) showService(activeTab + 1);
-    else if (dragX > threshold && activeTab > 0) showService(activeTab - 1);
-    else renderServices(); // snap back
-  };
-  svcViewport.addEventListener("pointerup", endDrag);
-  svcViewport.addEventListener("pointercancel", endDrag);
-  // a drag that ends over a "Get a Quote" button should not count as a click
-  svcViewport.addEventListener("click", e => {
-    if (suppressClick) { e.preventDefault(); e.stopPropagation(); suppressClick = false; }
-  }, true);
+    svcViewport.addEventListener("pointerdown", e => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      dragging = true; horizontal = false; dragX = 0;
+      startX = e.clientX; startY = e.clientY;
+    });
+    svcViewport.addEventListener("pointermove", e => {
+      if (!dragging) return;
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      if (!horizontal) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        if (Math.abs(dy) > Math.abs(dx)) { dragging = false; return; } // let the page scroll
+        horizontal = true;
+        track.style.transition = "none";
+        svcViewport.classList.add("dragging");
+        svcViewport.setPointerCapture(e.pointerId);
+      }
+      dragX = dx;
+      // resist past the first and last card
+      const atEdge = (svcIndex === 0 && dx > 0) || (svcIndex === maxIndex() && dx < 0);
+      track.style.transform = `translateX(${-baseOffset() + (atEdge ? dx / 3 : dx)}px)`;
+    });
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      track.style.transition = "";
+      svcViewport.classList.remove("dragging");
+      if (!horizontal) return;
+      suppressClick = Math.abs(dragX) > 6;
+      const threshold = Math.min(70, cards[0].offsetWidth * 0.18);
+      if (dragX < -threshold && activeTab < cards.length - 1) showService(activeTab + 1);
+      else if (dragX > threshold && activeTab > 0) showService(activeTab - 1);
+      else renderServices(); // snap back
+    };
+    svcViewport.addEventListener("pointerup", endDrag);
+    svcViewport.addEventListener("pointercancel", endDrag);
+    // a drag that ends over a card's button should not count as a click
+    svcViewport.addEventListener("click", e => {
+      if (suppressClick) { e.preventDefault(); e.stopPropagation(); suppressClick = false; }
+    }, true);
+  }
 
-  // Menu / footer links that point to a specific service
-  $$("a[data-service]").forEach(a => a.addEventListener("click", () => showService(+a.dataset.service)));
-
-  /* ---------- Why choose us switcher ---------- */
-  const whyData = [
-    { title: "End-to-End Service", text: "We handle the entire import and export process, from documentation and regulatory compliance to customs clearance, transportation and final delivery." },
-    { title: "Accuracy & Compliance", text: "Form M, PAAR, SONCAP, NAFDAC and customs documents are prepared carefully and correctly, helping you avoid documentation errors, penalties and hold-ups." },
-    { title: "Transparency", text: "Clear communication on processes, requirements and costs, so there are no surprises and no unnecessary additional charges." },
-    { title: "Timely Processing", text: "We move quickly on documentation, assessment and release, helping you avoid unnecessary delays and demurrage at the port or airport." },
-    { title: "Reliable Communication", text: "You are kept informed at every stage, from documentation to delivery, by a team that is easy to reach by phone, WhatsApp and email." },
-  ];
+  /* ---------- Why choose us switcher (home) ---------- */
   const whyItems = $$(".projects__item");
-  const whyImgs = $$(".projects__image img");
-  const whyCard = $("#projectCard");
-  whyItems.forEach(item => item.addEventListener("click", () => {
-    const i = +item.dataset.index;
-    if (item.classList.contains("active")) return;
-    whyItems.forEach(p => p.classList.toggle("active", p === item));
-    whyImgs.forEach((img, n) => img.classList.toggle("active", n === i));
-    whyCard.classList.add("swap");
-    setTimeout(() => {
-      $("#projectTitle").textContent = whyData[i].title;
-      $("#projectText").textContent = whyData[i].text;
-      whyCard.classList.remove("swap");
-    }, 350);
-  }));
+  if (whyItems.length) {
+    const whyData = [
+      { title: "End-to-End Service", text: "We handle the entire import and export process, from documentation and regulatory compliance to customs clearance, transportation and final delivery." },
+      { title: "Accuracy & Compliance", text: "Form M, PAAR, SONCAP, NAFDAC and customs documents are prepared carefully and correctly, helping you avoid documentation errors, penalties and hold-ups." },
+      { title: "Transparency", text: "Clear communication on processes, requirements and costs, so there are no surprises and no unnecessary additional charges." },
+      { title: "Timely Processing", text: "We move quickly on documentation, assessment and release, helping you avoid unnecessary delays and demurrage at the port or airport." },
+      { title: "Reliable Communication", text: "You are kept informed at every stage, from documentation to delivery, by a team that is easy to reach by phone, WhatsApp and email." },
+    ];
+    const whyImgs = $$(".projects__image img");
+    const whyCard = $("#projectCard");
+    whyItems.forEach(item => item.addEventListener("click", () => {
+      const i = +item.dataset.index;
+      if (item.classList.contains("active")) return;
+      whyItems.forEach(p => p.classList.toggle("active", p === item));
+      whyImgs.forEach((img, n) => img.classList.toggle("active", n === i));
+      whyCard.classList.add("swap");
+      setTimeout(() => {
+        $("#projectTitle").textContent = whyData[i].title;
+        $("#projectText").textContent = whyData[i].text;
+        whyCard.classList.remove("swap");
+      }, 350);
+    }));
+  }
 
   /* ---------- FAQ accordion ---------- */
   const faqItems = $$(".faq-item");
@@ -249,34 +201,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   window.addEventListener("resize", () => faqItems.forEach(i => setHeight(i, i.classList.contains("open"))));
 
-  /* ---------- Request a quote → WhatsApp ---------- */
-  const quoteForm = $("#quoteForm");
-  quoteForm.addEventListener("submit", e => {
-    e.preventDefault();
-    const fields = $$("[required]", quoteForm);
-    const missing = fields.filter(f => !f.value.trim());
-    fields.forEach(f => f.classList.toggle("invalid", missing.includes(f)));
-    if (missing.length) {
-      missing[0].focus();
-      showToast("Please fill in the required fields.");
-      return;
-    }
-    const d = Object.fromEntries(new FormData(quoteForm));
-    const lines = [
-      "*Quote Request – Markway Website*",
-      `Name: ${d.name}`,
-      d.company && `Company: ${d.company}`,
-      `Phone: ${d.phone}`,
-      d.email && `Email: ${d.email}`,
-      `Service: ${d.service}`,
-      `Shipment: ${d.type}`,
-      d.origin && `Origin: ${d.origin}`,
-      d.destination && `Destination: ${d.destination}`,
-      `Cargo: ${d.cargo}`,
-    ].filter(Boolean);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener");
-    showToast("Opening WhatsApp with your quote request…");
-    quoteForm.reset();
+  /* ---------- Quote & contact forms → WhatsApp ---------- */
+  // Each field's label text becomes its line in the message, e.g. "Full Name: Ada"
+  const fieldLabel = f => f.closest("label").firstChild.textContent.replace("*", "").trim();
+
+  $$("form[data-whatsapp]").forEach(form => {
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const fields = $$("[required]", form);
+      const missing = fields.filter(f => !f.value.trim());
+      fields.forEach(f => f.classList.toggle("invalid", missing.includes(f)));
+      if (missing.length) {
+        missing[0].focus();
+        showToast("Please fill in the required fields.");
+        return;
+      }
+      const lines = [
+        `*${form.dataset.whatsapp} – Markway Website*`,
+        ...$$("[name]", form).filter(f => f.value.trim()).map(f => `${fieldLabel(f)}: ${f.value.trim()}`),
+      ];
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener");
+      showToast("Opening WhatsApp with your message…");
+      form.reset();
+    });
+    $$("[required]", form).forEach(f => f.addEventListener("input", () => f.classList.remove("invalid")));
   });
-  $$("[required]", quoteForm).forEach(f => f.addEventListener("input", () => f.classList.remove("invalid")));
 });
